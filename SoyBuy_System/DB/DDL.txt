@@ -1,0 +1,20 @@
+______________________Create_Statement_________________________
+
+CREATE TABLE Employee (employeeId int(10) NOT NULL AUTO_INCREMENT, first_name varchar(255), last_name varchar(255), email varchar(255), BOD timestamp NULL, UseruserId int(10) NOT NULL, PRIMARY KEY (employeeId), INDEX (employeeId));
+CREATE TABLE Manager (managerId int(10) NOT NULL AUTO_INCREMENT, first_name varchar(255), last_name varchar(255), email varchar(255), BOD timestamp NULL, UseruserId int(10) NOT NULL, PRIMARY KEY (managerId), INDEX (managerId));
+CREATE TABLE Ticket (ticket_id int(10) NOT NULL AUTO_INCREMENT, serialNumber int(10) NOT NULL UNIQUE, productCategory varchar(255), phoneNumber int(10), customerName varchar(255), email varchar(255), purchasedDate timestamp NULL, issueDate timestamp NULL, problemDescription varchar(500), EmployeeemployeeId int(10) NOT NULL, PRIMARY KEY (ticket_id));
+CREATE TABLE `User` (userId int(10) NOT NULL AUTO_INCREMENT, user_name int(6) UNIQUE, password int(8), role varchar(255), PRIMARY KEY (userId), INDEX (userId));
+ALTER TABLE Ticket ADD CONSTRAINT FKTicket528006 FOREIGN KEY (EmployeeemployeeId) REFERENCES Employee (employeeId);
+ALTER TABLE Manager ADD CONSTRAINT FKManager244472 FOREIGN KEY (UseruserId) REFERENCES `User` (userId);
+ALTER TABLE Employee ADD CONSTRAINT FKEmployee443359 FOREIGN KEY (UseruserId) REFERENCES `User` (userId);
+
+______________________Drop_Statement_________________________
+
+ALTER TABLE Ticket DROP FOREIGN KEY FKTicket528006;
+ALTER TABLE Manager DROP FOREIGN KEY FKManager244472;
+ALTER TABLE Employee DROP FOREIGN KEY FKEmployee443359;
+DROP TABLE IF EXISTS Employee;
+DROP TABLE IF EXISTS Manager;
+DROP TABLE IF EXISTS Ticket;
+DROP TABLE IF EXISTS `User`;
+
